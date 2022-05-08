@@ -13,7 +13,7 @@ const Banner = () => {
           style={{ color: "green" }}
           className="d-lg-block d-none text-center fs-4"
         >
-          We provide best food around the country.
+          We provide fresh fruits around the country.
         </p>
       </div>
     </div>

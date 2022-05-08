@@ -9,6 +9,10 @@
   font-size: 4rem;
   background-color: #cac8c892;
   border-radius: 1rem;
-  color: black;
+  color: #212529;
   padding: 0.5rem;
+}
+
+.font {
+  font-family: Georgia, "Times New Roman", Times, serif;
 }

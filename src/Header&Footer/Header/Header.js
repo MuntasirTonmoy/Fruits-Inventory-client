@@ -41,7 +41,7 @@ const Header = () => {
           <Nav.Link
             as={HashLink}
             smooth
-            to="/home#contact"
+            to="/home#about"
             className="mx-auto my-2 my-lg-0 me-lg-2"
           >
             About
