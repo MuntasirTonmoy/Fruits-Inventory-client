@@ -1,0 +1,14 @@
+.main-banner {
+  height: calc(100vh - 70px);
+  background-image: url(../../../banner.jpg);
+  background-repeat: no-repeat;
+}
+
+.banner-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 4rem;
+  background-color: #cac8c892;
+  border-radius: 1rem;
+  color: black;
+  padding: 0.5rem;
+}
