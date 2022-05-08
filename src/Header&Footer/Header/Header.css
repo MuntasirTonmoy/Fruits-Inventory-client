@@ -50,13 +50,13 @@
 .button-outline {
   align-items: center;
   background-clip: padding-box;
-  background-color: #212529;
+  background-color: transparent;
   border: 1px solid #fa6400;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
-  color: #fff;
+  color: #fa6400;
   cursor: pointer;
   display: inline-flex;
   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,

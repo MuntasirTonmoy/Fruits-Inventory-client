@@ -8,6 +8,8 @@ import Login from "./Pages/LogIn/Login";
 import Register from "./Pages/Register/Register";
 import Error404 from "./Pages/Error404/Error404";
 import Blogs from "./Pages/Blogs/Blogs";
+import "react-toastify/dist/ReactToastify.css";
+import PasswordReset from "./Pages/PasswordReset/PasswordReset";
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route
+          path="/resetPassword"
+          element={<PasswordReset></PasswordReset>}
+        ></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/*" element={<Error404></Error404>}></Route>
