@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="bg-light container my-lg-5 d-lg-flex justify-content-between p-4 p-lg-0"
+      className="bg-light container my-lg-5 d-lg-flex justify-content-between p-4 p-lg-0 "
     >
       <img src={contact} className="img-fluid" alt="" />
       <div className="mx-auto p-4">

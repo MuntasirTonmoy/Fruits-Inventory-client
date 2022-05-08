@@ -5,7 +5,14 @@ const Banner = () => {
   return (
     <div className="container-fluid main-banner d-flex justify-content-center align-items-center">
       <div>
-        <h1 className="banner-text text-center">
+        <h1 className="d-lg-block d-none text-center banner-text">
+          {" "}
+          Welcome to Fruits inventory
+        </h1>
+        <h1
+          style={{ backgroundColor: "#cac8c892" }}
+          className="d-lg-none d-block banner-text text-center"
+        >
           {" "}
           Welcome to Fruits inventory
         </h1>

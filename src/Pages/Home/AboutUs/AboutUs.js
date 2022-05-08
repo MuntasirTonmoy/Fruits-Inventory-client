@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="container p-4 p-lg-0 my-4 my-lg-5">
+    <div className="container p-4 p-lg-2 my-4 my-lg-5">
       <h1 className="text-center font mb-3">About us</h1>
       <p id="about" className="text-secondary" style={{ textAlign: "justify" }}>
         Our vision is to supply every one of our customers with the freshest,
