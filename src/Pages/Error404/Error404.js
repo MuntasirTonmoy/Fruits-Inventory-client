@@ -5,7 +5,7 @@ const Error404 = () => {
   return (
     <div>
       <div
-        style={{ height: "80vh" }}
+        style={{ height: "82vh" }}
         className="d-flex justify-content-center align-items-center p-lg-5"
       >
         <div
