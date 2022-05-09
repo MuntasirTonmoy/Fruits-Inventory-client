@@ -92,6 +92,7 @@
 
 .button-outline:active {
   background-color: #c85000;
+  color: white;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }

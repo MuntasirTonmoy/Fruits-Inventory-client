@@ -12,6 +12,7 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Inventory from "./Pages/Inventory/Inventory";
 import "react-toastify/dist/ReactToastify.css";
 import PasswordReset from "./Pages/PasswordReset/PasswordReset";
+import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
           element={
             <RequireAuth>
               <Inventory></Inventory>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/manageinventory"
+          element={
+            <RequireAuth>
+              <ManageInventory></ManageInventory>
             </RequireAuth>
           }
         ></Route>
