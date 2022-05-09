@@ -3,8 +3,10 @@ import { Table } from "react-bootstrap";
 import useItems from "../../hooks/useItems";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { AiOutlineFileAdd } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const ManageInventory = () => {
+  const navigate = useNavigate();
   const [fruits, setFruits] = useItems();
   const handleDeleteUser = (id) => {
     const confirm = window.confirm(
@@ -27,7 +29,10 @@ const ManageInventory = () => {
   return (
     <div className="container mt-lg-5">
       <div className="w-75 mx-auto">
-        <button className=" button-outline w-100 p-4 mb-5  mt-lg-2 mt-4 fs-3">
+        <button
+          onClick={() => navigate("/additem")}
+          className=" button-outline w-100 p-4 mb-5  mt-lg-2 mt-4 fs-3"
+        >
           Add Item <AiOutlineFileAdd className="ms-2"></AiOutlineFileAdd>
         </button>
       </div>

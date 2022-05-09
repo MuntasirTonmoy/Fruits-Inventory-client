@@ -13,6 +13,7 @@ import Inventory from "./Pages/Inventory/Inventory";
 import "react-toastify/dist/ReactToastify.css";
 import PasswordReset from "./Pages/PasswordReset/PasswordReset";
 import ManageInventory from "./Pages/ManageInventory/ManageInventory";
+import AddItem from "./Pages/AddItem/AddItem";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
           element={
             <RequireAuth>
               <ManageInventory></ManageInventory>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/additem"
+          element={
+            <RequireAuth>
+              <AddItem></AddItem>
             </RequireAuth>
           }
         ></Route>

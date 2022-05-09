@@ -10,6 +10,9 @@ const Inventory = () => {
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [quantity, setQuantity] = useState(0);
+  const [state, setState] = useState(true);
+  let current;
+
   const [delivered, setDelivered] = useState(0);
   useEffect(() => {
     fetch(`http://localhost:5000/inventory/${id}`)
@@ -30,7 +33,12 @@ const Inventory = () => {
     event.preventDefault();
     const amount = parseInt(event.target.quantity.value);
     setQuantity(quantity + amount);
+    event.target.reset();
+  };
+
+  useEffect(() => {
     const newQuantity = { quantity };
+    console.log(newQuantity);
     fetch(`http://localhost:5000/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
@@ -42,18 +50,17 @@ const Inventory = () => {
       .then((data) => {
         console.log(data);
       });
-    event.target.reset();
-  };
+  }, [quantity]);
 
   return (
     <div className="container my-lg-5 py-lg-5 my-5">
       <div className="row">
         <div className="col-lg-6 col-12 bg-light">
-          <div className="row m-0">
+          <div className="row m-0 pb-3">
             <div className="col-lg-6 col-12 ps-4 ps-lg-0 ms-lg-0">
               <img
                 src={selectedItem?.picture}
-                style={{ height: "350px" }}
+                style={{ height: "390px" }}
                 className="img-fluid mt-lg-4 d-none d-lg-block  ps-lg-3 pb-lg-1"
                 alt=""
               />
@@ -111,7 +118,7 @@ const Inventory = () => {
             </div>
             <button
               onClick={() => navigate("/manageinventory")}
-              className=" button-outline  p-4  mt-lg-2 mt-4 fs-3 w-100"
+              className=" button-outline  p-4 m  mt-4 fs-3 w-100"
             >
               Manage Inventory{" "}
               <BsCartCheckFill className="ms-2"></BsCartCheckFill>
