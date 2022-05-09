@@ -47,6 +47,10 @@
   transform: translateY(0);
 }
 
+.text-orange {
+  color: #fa6400;
+}
+
 .button-outline {
   align-items: center;
   background-clip: padding-box;

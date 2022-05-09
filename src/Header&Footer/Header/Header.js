@@ -9,9 +9,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { FaRegUserCircle } from "react-icons/fa";
+import { BiLogIn, BiUserPlus } from "react-icons/bi";
 
 const Header = () => {
-  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const handleSignout = () => {
     signOut(auth);
@@ -78,7 +78,12 @@ const Header = () => {
               as={CustomLink}
               to="/register"
             >
-              <button className="button">Register</button>
+              <button className="button">
+                Register
+                <span className="fs-5 ms-1">
+                  <BiUserPlus></BiUserPlus>
+                </span>
+              </button>
             </Nav.Link>
           )}
 
@@ -94,7 +99,12 @@ const Header = () => {
               as={CustomLink}
               to="/login"
             >
-              <button className="button-outline">Log in</button>
+              <button className="button-outline">
+                Log in{" "}
+                <span className="fs-5 ms-1">
+                  <BiLogIn></BiLogIn>
+                </span>
+              </button>
             </Nav.Link>
           )}
         </Nav>

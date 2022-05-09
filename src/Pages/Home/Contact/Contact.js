@@ -1,5 +1,6 @@
 import React from "react";
 import contact from "../../../contact.png";
+import { FiSend } from "react-icons/fi";
 
 const Contact = () => {
   const handleSumbit = (event) => {
@@ -45,11 +46,12 @@ const Contact = () => {
                   rows="3"
                   placeholder="Write something here..."
                 ></textarea>
-                <input
-                  className="button w-100 mt-4"
-                  type="submit"
-                  value="Send"
-                ></input>
+                <button className="button w-100 mt-4" type="submit">
+                  <span className="me-1 fs-6">
+                    <FiSend></FiSend>
+                  </span>
+                  Send{" "}
+                </button>
               </div>
             </div>
           </form>

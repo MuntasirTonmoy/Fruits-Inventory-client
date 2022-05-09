@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
+import useItems from "../../../hooks/useItems";
 import Fruit from "./Fruit/Fruit";
 
 const Items = () => {
-  const [fruits, setFruits] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/fruits")
-      .then((res) => res.json())
-      .then((data) => setFruits(data));
-  }, []);
+  const [fruits] = useItems();
   return (
     <div className="container my-5">
       <h1 className="text-center font mb-4">Available Fruits</h1>
