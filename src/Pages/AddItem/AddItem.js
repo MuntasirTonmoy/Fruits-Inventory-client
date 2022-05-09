@@ -25,9 +25,9 @@ const AddItem = () => {
       });
   };
   return (
-    <div className="container w-75 mx-auto">
+    <div className="container w-75 mx-auto bg-light pt-lg-3 pb-lg-4 my-lg-5">
       <h1 className="text-center mt-5">Add an item</h1>
-      <Form onSubmit={handleAddUser} className="w-75 mx-auto mt-3">
+      <Form onSubmit={handleAddUser} className="w-75 mx-auto">
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -76,7 +76,7 @@ const AddItem = () => {
 
         <button
           type="submit"
-          className=" w-100 px-5 mb-lg-4 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round text-uppercase bg-gradient"
+          className=" w-100 px-5 mb-lg-4 mt-2 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round text-uppercase bg-gradient"
         >
           Add Item{" "}
           <span className="ms-2">

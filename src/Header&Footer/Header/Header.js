@@ -57,6 +57,24 @@ const Header = () => {
         </Nav>
 
         <Nav className="ms-auto align-items-center">
+          {user && (
+            <Nav.Link
+              className="mx-auto my-2 my-lg-0 me-lg-2"
+              as={CustomLink}
+              to="/additem"
+            >
+              Add
+            </Nav.Link>
+          )}
+          {user && (
+            <Nav.Link
+              className="mx-auto my-2 my-lg-0 me-lg-2"
+              as={CustomLink}
+              to="/manageinventory"
+            >
+              Manage
+            </Nav.Link>
+          )}
           {user ? (
             user.photoURL ? (
               <img

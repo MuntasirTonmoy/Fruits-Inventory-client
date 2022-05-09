@@ -9,9 +9,7 @@ const Inventory = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
-  const [quantity, setQuantity] = useState(0);
-  const [state, setState] = useState(true);
-  let current;
+  const [reload, setReload] = useState(true);
 
   const [delivered, setDelivered] = useState(0);
   useEffect(() => {
@@ -20,25 +18,35 @@ const Inventory = () => {
       .then((data) => {
         setSelectedItem(data);
       });
-  }, []);
+  }, [reload]);
 
   const handleDelivery = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => prev - 1);
-      setDelivered((prev) => prev + 1);
-    }
+    const prevQuantity = selectedItem?.quantity;
+    const quantity = prevQuantity - 1;
+    const prevDelivered = selectedItem?.delivered;
+    const delivered = prevDelivered + 1;
+    const update = { quantity, delivered };
+
+    fetch(`http://localhost:5000/inventory/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(update),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setReload(!reload);
+      });
   };
 
   const handleRestock = (event) => {
     event.preventDefault();
     const amount = parseInt(event.target.quantity.value);
-    setQuantity(quantity + amount);
-    event.target.reset();
-  };
-
-  useEffect(() => {
+    const prevQuantity = selectedItem?.quantity;
+    const quantity = prevQuantity + amount;
     const newQuantity = { quantity };
-    console.log(newQuantity);
     fetch(`http://localhost:5000/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
@@ -49,19 +57,21 @@ const Inventory = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setReload(!reload);
       });
-  }, [quantity]);
+    event.target.reset();
+  };
 
   return (
     <div className="container my-lg-5 py-lg-5 my-5">
       <div className="row">
         <div className="col-lg-6 col-12 bg-light">
-          <div className="row m-0 pb-3">
+          <div className="row m-0 pb-2">
             <div className="col-lg-6 col-12 ps-4 ps-lg-0 ms-lg-0">
               <img
                 src={selectedItem?.picture}
-                style={{ height: "390px" }}
-                className="img-fluid mt-lg-4 d-none d-lg-block  ps-lg-3 pb-lg-1"
+                style={{ height: "350px" }}
+                className="img-fluid mt-lg-4 d-none d-lg-block  ps-lg-3 "
                 alt=""
               />
               <img
@@ -70,7 +80,7 @@ const Inventory = () => {
                 alt=""
               />
             </div>
-            <div className="col-lg-6 col-12 ms-lg-0 p-4 p-lg-3">
+            <div className="col-lg-6 col-12 ms-lg-0 p-4 pt-lg-3">
               <h2 className="font">{selectedItem?.name}</h2>
               <small className="my-3">ID: {selectedItem?._id}</small>
               <p className="my-3 fs-5">{selectedItem?.description}</p>
@@ -79,8 +89,8 @@ const Inventory = () => {
                 Price:
                 <span className="text-success"> ${selectedItem?.price}</span>
               </p>
-              <p className="my-3 fs-5">Quantity: {quantity}</p>
-              <p className="mt-3 fs-5">Delivered: {delivered}</p>
+              <p className="my-3 fs-5">Quantity: {selectedItem?.quantity}</p>
+              <p className="mt-3 fs-5">Delivered: {selectedItem?.delivered}</p>
               <button onClick={handleDelivery} className="button w-100">
                 Deliver
                 <span className="ms-2">

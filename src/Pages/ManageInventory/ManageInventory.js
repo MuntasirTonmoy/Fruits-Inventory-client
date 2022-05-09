@@ -36,14 +36,16 @@ const ManageInventory = () => {
           Add Item <AiOutlineFileAdd className="ms-2"></AiOutlineFileAdd>
         </button>
       </div>
-
+      <h2 className="text-center font bg-light p-3 w-75 mx-auto mb-0">
+        Manage Inventory
+      </h2>
       <Table className="w-75 mx-auto" striped bordered>
         <thead>
           <tr>
-            <th className="ps-5" colSpan={2}>
+            <th className="ps-5 fs-5" colSpan={2}>
               All Items
             </th>
-            <th className="text-center">Manage</th>
+            <th className="text-center fs-5">Manage</th>
           </tr>
         </thead>
         <tbody>
