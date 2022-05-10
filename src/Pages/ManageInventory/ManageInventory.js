@@ -9,7 +9,7 @@ import auth from "../../firebase.init";
 import useMyItems from "../../hooks/useMyItems";
 
 const ManageInventory = () => {
-  const user = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   let location = useLocation();
   const from = location.state?.from?.pathname || "/";

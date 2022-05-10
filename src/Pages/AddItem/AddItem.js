@@ -7,7 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 
 const AddItem = () => {
-  const user = useAuthState(auth);
+  const [user] = useAuthState(auth);
+  const email = user.email;
   const navigate = useNavigate();
   let location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -17,7 +18,7 @@ const AddItem = () => {
     }
   }, [user]);
 
-  const handleAddUser = (event) => {
+  const handleAddItem = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const picture = event.target.picture.value;
@@ -25,9 +26,17 @@ const AddItem = () => {
     const price = event.target.price.value;
     const quantity = event.target.quantity.value;
     const delivered = 0;
-    const item = { name, picture, description, price, quantity, delivered };
+    const item = {
+      name,
+      email,
+      picture,
+      description,
+      price,
+      quantity,
+      delivered,
+    };
 
-    fetch("http://localhost:5000/myitems", {
+    fetch(`http://localhost:5000/myitems`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -40,6 +49,7 @@ const AddItem = () => {
           toast.success("Item added successfully", {
             toastId: "success1",
           });
+          event.target.reset();
         }
       });
   };
@@ -59,7 +69,7 @@ const AddItem = () => {
         pauseOnHover={false}
       />
       <h1 className="text-center mt-5">Add Item</h1>
-      <Form onSubmit={handleAddUser} className="w-75 mx-auto">
+      <Form onSubmit={handleAddItem} className="w-75 mx-auto">
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
