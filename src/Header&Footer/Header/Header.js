@@ -67,6 +67,15 @@ const Header = () => {
               <NavDropdown.Item
                 className="mx-auto my-2 my-lg-0 me-lg-2"
                 as={CustomLink}
+                to="/myitems"
+              >
+                My Items
+              </NavDropdown.Item>
+
+              <NavDropdown.Divider />
+              <NavDropdown.Item
+                className="mx-auto my-2 my-lg-0 me-lg-2"
+                as={CustomLink}
                 to="/additem"
               >
                 Add item

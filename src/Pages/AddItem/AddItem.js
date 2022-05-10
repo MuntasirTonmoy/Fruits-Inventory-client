@@ -16,6 +16,7 @@ const AddItem = () => {
       navigate(from, { replace: true });
     }
   }, [user]);
+
   const handleAddUser = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -25,7 +26,8 @@ const AddItem = () => {
     const quantity = event.target.quantity.value;
     const delivered = 0;
     const item = { name, picture, description, price, quantity, delivered };
-    fetch("http://localhost:5000/inventory", {
+
+    fetch("http://localhost:5000/myitems", {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -41,6 +43,7 @@ const AddItem = () => {
         }
       });
   };
+
   return (
     <div className="container w-75 mx-auto bg-light pt-lg-3 pb-lg-5 my-lg-5">
       <ToastContainer
@@ -55,7 +58,7 @@ const AddItem = () => {
         draggable
         pauseOnHover={false}
       />
-      <h1 className="text-center mt-5">Add an item</h1>
+      <h1 className="text-center mt-5">Add Item</h1>
       <Form onSubmit={handleAddUser} className="w-75 mx-auto">
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>

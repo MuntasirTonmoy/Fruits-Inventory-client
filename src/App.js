@@ -14,22 +14,11 @@ import "react-toastify/dist/ReactToastify.css";
 import PasswordReset from "./Pages/PasswordReset/PasswordReset";
 import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 import AddItem from "./Pages/AddItem/AddItem";
-import useItems from "./hooks/useItems";
+import MyItems from "./Pages/MyItems/MyItems";
 
 function App() {
-  const { loading } = useItems();
   return (
     <div>
-      {loading && (
-        <div
-          style={{ height: "85vh" }}
-          className="d-flex justify-content-center align-items-center"
-        >
-          <div className="spinner-grow text-danger me-2" role="status"></div>
-          <div className="spinner-grow text-warning me-2" role="status"></div>
-          <div className="spinner-grow text-success" role="status"></div>
-        </div>
-      )}
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
@@ -63,6 +52,14 @@ function App() {
           element={
             <RequireAuth>
               <AddItem></AddItem>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/myitems"
+          element={
+            <RequireAuth>
+              <MyItems></MyItems>
             </RequireAuth>
           }
         ></Route>

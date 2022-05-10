@@ -6,6 +6,7 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import useMyItems from "../../hooks/useMyItems";
 
 const ManageInventory = () => {
   const user = useAuthState(auth);
@@ -17,8 +18,11 @@ const ManageInventory = () => {
       navigate(from, { replace: true });
     }
   }, [user]);
+
   const { fruits, setFruits, loading } = useItems();
-  const handleDeleteUser = (id) => {
+  const { myItems, setMyItems } = useMyItems();
+
+  const handleDeleteFruits = (id) => {
     const confirm = window.confirm(
       "Are you sure you want to delete this item? "
     );
@@ -30,8 +34,26 @@ const ManageInventory = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            const remainings = fruits.filter((user) => user._id !== id);
-            setFruits(remainings);
+            const remainingFruits = fruits.filter((user) => user._id !== id);
+            setFruits(remainingFruits);
+          }
+        });
+    }
+  };
+  const handleDeleteMyItems = (id) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this item? "
+    );
+    if (confirm) {
+      const url = `http://localhost:5000/myitems/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const remainingItems = myItems.filter((user) => user._id !== id);
+            setMyItems(remainingItems);
           }
         });
     }
@@ -57,7 +79,7 @@ const ManageInventory = () => {
         </button>
       </div>
       <h2 className="text-center font bg-light p-3 w-75 mx-auto mb-0">
-        Manage Inventory
+        Manage All Items
       </h2>
       <Table className="w-75 mx-auto" striped bordered>
         <thead>
@@ -85,7 +107,30 @@ const ManageInventory = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDeleteUser(fruit._id)}
+                    onClick={() => handleDeleteFruits(fruit._id)}
+                    className="border-0 bg-transparent text-danger fs-4"
+                  >
+                    <RiDeleteBinLine></RiDeleteBinLine>
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+          {myItems.map((myItem) => {
+            return (
+              <tr key={myItem._id}>
+                <td colSpan={2} className="fs-5">
+                  {myItem.name}
+                </td>
+                <td className="fs-5 d-lg-table-cell d-none">
+                  {myItem.quantity}
+                </td>
+                <td className="fs-5 d-lg-table-cell d-none">
+                  {myItem.delivered}
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteMyItems(myItem._id)}
                     className="border-0 bg-transparent text-danger fs-4"
                   >
                     <RiDeleteBinLine></RiDeleteBinLine>
