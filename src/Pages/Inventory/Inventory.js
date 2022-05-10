@@ -10,13 +10,16 @@ const Inventory = () => {
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [reload, setReload] = useState(true);
+  const [loading, setIsLoading] = useState(false);
 
   const [delivered, setDelivered] = useState(0);
   useEffect(() => {
+    setIsLoading(true);
     fetch(`http://localhost:5000/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
+        setIsLoading(false);
       });
   }, [reload]);
 
@@ -64,6 +67,17 @@ const Inventory = () => {
 
   return (
     <div className="container my-lg-5 py-lg-5 my-5">
+      {loading && (
+        <div
+          style={{ height: "85vh" }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <div className="spinner-grow text-danger me-2" role="status"></div>
+          <div className="spinner-grow text-warning me-2" role="status"></div>
+          <div className="spinner-grow text-success" role="status"></div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-lg-6 col-12 bg-light">
           <div className="row m-0 pb-2">

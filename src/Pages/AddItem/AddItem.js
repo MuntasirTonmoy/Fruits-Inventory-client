@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { MdAddCircleOutline } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const AddItem = () => {
+  const user = useAuthState(auth);
+  const navigate = useNavigate();
+  let location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (!user) {
+      navigate(from, { replace: true });
+    }
+  }, [user]);
   const handleAddUser = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -10,7 +22,8 @@ const AddItem = () => {
     const description = event.target.description.value;
     const price = event.target.price.value;
     const quantity = event.target.quantity.value;
-    const item = { name, picture, description, price, quantity };
+    const delivered = 0;
+    const item = { name, picture, description, price, quantity, delivered };
     fetch("http://localhost:5000/inventory", {
       method: "POST",
       body: JSON.stringify(item),
@@ -25,7 +38,7 @@ const AddItem = () => {
       });
   };
   return (
-    <div className="container w-75 mx-auto bg-light pt-lg-3 pb-lg-4 my-lg-5">
+    <div className="container w-75 mx-auto bg-light pt-lg-3 pb-lg-5 my-lg-5">
       <h1 className="text-center mt-5">Add an item</h1>
       <Form onSubmit={handleAddUser} className="w-75 mx-auto">
         <Form.Group className="mb-3">
@@ -76,7 +89,7 @@ const AddItem = () => {
 
         <button
           type="submit"
-          className=" w-100 px-5 mb-lg-4 mt-2 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round text-uppercase bg-gradient"
+          className=" w-100 px-5 mb-lg-4 mt-3 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round text-uppercase bg-gradient"
         >
           Add Item{" "}
           <span className="ms-2">

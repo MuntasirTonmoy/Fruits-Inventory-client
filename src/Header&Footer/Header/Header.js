@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { GiRaspberry } from "react-icons/gi";
@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { FaRegUserCircle } from "react-icons/fa";
-import { BiLogIn, BiUserPlus } from "react-icons/bi";
+import { BiLogIn, BiUserPlus, BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -58,26 +58,36 @@ const Header = () => {
 
         <Nav className="ms-auto align-items-center">
           {user && (
-            <Nav.Link
-              className="mx-auto my-2 my-lg-0 me-lg-2"
-              as={CustomLink}
-              to="/additem"
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title="Inventory"
+              menuVariant="dark"
+              className="me-lg-3"
             >
-              Add
-            </Nav.Link>
+              <NavDropdown.Item
+                className="mx-auto my-2 my-lg-0 me-lg-2"
+                as={CustomLink}
+                to="/additem"
+              >
+                Add item
+              </NavDropdown.Item>
+
+              <NavDropdown.Divider />
+
+              <NavDropdown.Item
+                className="mx-auto my-2 my-lg-0 me-lg-2"
+                as={CustomLink}
+                to="/manageinventory"
+              >
+                Manage items
+              </NavDropdown.Item>
+            </NavDropdown>
           )}
-          {user && (
-            <Nav.Link
-              className="mx-auto my-2 my-lg-0 me-lg-2"
-              as={CustomLink}
-              to="/manageinventory"
-            >
-              Manage
-            </Nav.Link>
-          )}
+
           {user ? (
             user.photoURL ? (
               <img
+                referrerPolicy="no-referrer"
                 src={user.photoURL}
                 className="mx-auto my-2 my-lg-0 me-lg-3"
                 width="35px"
@@ -108,7 +118,10 @@ const Header = () => {
           {user ? (
             <Nav.Link className="text-uppercase mx-auto my-2 my-lg-0 me-lg-3">
               <button onClick={handleSignout} className="button-outline">
-                Log out
+                Log out{" "}
+                <span className="fs-5 ms-1">
+                  <BiLogOut></BiLogOut>
+                </span>
               </button>
             </Nav.Link>
           ) : (

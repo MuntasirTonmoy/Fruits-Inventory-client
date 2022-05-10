@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, Spinner } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { FcGoogle } from "react-icons/fc";
 import {
   useSignInWithEmailAndPassword,
@@ -48,7 +48,14 @@ const Login = () => {
   }
 
   if (emailLoading || googleLoading) {
-    <Spinner></Spinner>;
+    <div
+      style={{ height: "85vh" }}
+      className="d-flex justify-content-center align-items-center"
+    >
+      <div className="spinner-grow text-danger me-2" role="status"></div>
+      <div className="spinner-grow text-warning me-2" role="status"></div>
+      <div className="spinner-grow text-success" role="status"></div>
+    </div>;
   }
 
   useEffect(() => {

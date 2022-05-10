@@ -2,6 +2,10 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+.primary-color {
+  color: #fa6400;
+}
+
 .button {
   align-items: center;
   background-clip: padding-box;
@@ -103,4 +107,8 @@
 
 .item:hover {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.nav-link:hover {
+  color: #ff8100 !important;
 }

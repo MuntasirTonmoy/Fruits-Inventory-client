@@ -3,7 +3,7 @@ import useItems from "../../../hooks/useItems";
 import Fruit from "./Fruit/Fruit";
 
 const Items = () => {
-  const [fruits] = useItems();
+  const { fruits } = useItems();
   const sixItems = fruits.slice(0, 6);
   return (
     <div className="container my-5">
