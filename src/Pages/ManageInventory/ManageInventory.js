@@ -67,7 +67,7 @@ const ManageInventory = () => {
             </th>
             <th className="fs-5 d-lg-table-cell d-none">Quantity</th>
             <th className="fs-5 d-lg-table-cell d-none">Delivered</th>
-            <th className="fs-5">Manage</th>
+            <th className="fs-5">Delete</th>
           </tr>
         </thead>
         <tbody className="text-center">

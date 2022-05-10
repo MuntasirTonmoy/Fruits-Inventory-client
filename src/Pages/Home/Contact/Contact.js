@@ -10,9 +10,14 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="bg-light container  my-lg-5 d-lg-flex justify-content-between p-4 p-lg-0 "
+      className="bg-light container  my-lg-5 d-lg-flex d-md-block justify-content-between p-4 p-lg-0 "
     >
-      <img src={contact} className="img-fluid" alt="" />
+      <img src={contact} className="img-fluid d-lg-block d-none" alt="" />
+      <img
+        src={contact}
+        className="img-fluid w-100 d-lg-none d-md-block d-none"
+        alt=""
+      />
       <div className="mx-auto p-4">
         <h1 className="font text-center mb-4">Contact</h1>
         <div className="mx-auto">

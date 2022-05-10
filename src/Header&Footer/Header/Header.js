@@ -118,10 +118,10 @@ const Header = () => {
           {user ? (
             <Nav.Link className="text-uppercase mx-auto my-2 my-lg-0 me-lg-3">
               <button onClick={handleSignout} className="button-outline">
-                Log out{" "}
-                <span className="fs-5 ms-1">
+                <span className="fs-5 me-2">
                   <BiLogOut></BiLogOut>
-                </span>
+                </span>{" "}
+                Log out
               </button>
             </Nav.Link>
           ) : (

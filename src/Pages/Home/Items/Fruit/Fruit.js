@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Fruit = ({ fruit }) => {
   const navigate = useNavigate();
   return (
-    <div className="col-lg-4 mb-4">
+    <div className="col-lg-4 col-md-6 mb-4">
       <div className="item">
         <Card>
           <Card.Img variant="top" src={fruit.picture} className="img-fluid" />

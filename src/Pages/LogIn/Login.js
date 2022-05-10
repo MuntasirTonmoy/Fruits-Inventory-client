@@ -44,7 +44,6 @@ const Login = () => {
     toast.error(googleError.message, {
       toastId: "error1",
     });
-    console.log(googleError.message);
   }
 
   if (emailLoading || googleLoading) {

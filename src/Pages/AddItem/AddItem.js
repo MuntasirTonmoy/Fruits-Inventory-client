@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 
 const AddItem = () => {
@@ -33,12 +34,27 @@ const AddItem = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        event.target.reset();
+        if (data) {
+          toast.success("Item added successfully", {
+            toastId: "success1",
+          });
+        }
       });
   };
   return (
     <div className="container w-75 mx-auto bg-light pt-lg-3 pb-lg-5 my-lg-5">
+      <ToastContainer
+        limit={1}
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
       <h1 className="text-center mt-5">Add an item</h1>
       <Form onSubmit={handleAddUser} className="w-75 mx-auto">
         <Form.Group className="mb-3">
@@ -72,7 +88,8 @@ const AddItem = () => {
           <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
-            type="text"
+            type="number"
+            min="0"
             placeholder="Enter amount"
             required
           />
@@ -81,17 +98,18 @@ const AddItem = () => {
           <Form.Label>Quantity</Form.Label>
           <Form.Control
             name="quantity"
-            type="text"
-            placeholder="Enter amount"
+            type="number"
+            min="0"
+            placeholder="Enter quantity"
             required
           />
         </Form.Group>
 
         <button
           type="submit"
-          className=" w-100 px-5 mb-lg-4 mt-3 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round text-uppercase bg-gradient"
+          className=" w-100 px-5 mb-lg-4 mt-4 px-lg-3 mb-4  mx-auto mb-lg-0 button me-lg-4  background text-white round  bg-gradient"
         >
-          Add Item{" "}
+          Add
           <span className="ms-2">
             <MdAddCircleOutline></MdAddCircleOutline>
           </span>

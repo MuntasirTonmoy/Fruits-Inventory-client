@@ -17,7 +17,8 @@
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   font-size: 16px;
@@ -66,7 +67,8 @@
   box-sizing: border-box;
   color: #fa6400;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   font-size: 16px;
