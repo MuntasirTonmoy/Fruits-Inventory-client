@@ -19,11 +19,23 @@ const Login = () => {
   const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
     useSignInWithEmailAndPassword(auth);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     const email = event.target.email?.value;
     const password = event.target.password?.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+
+    fetch(`http://localhost:5000/login`, {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("token", data.token);
+      });
   };
 
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
