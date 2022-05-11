@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import useMyItems from "../../hooks/useMyItems";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const MyItems = () => {
   const { myItems, setMyItems } = useMyItems();
