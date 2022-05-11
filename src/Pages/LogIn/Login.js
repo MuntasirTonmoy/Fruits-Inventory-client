@@ -35,6 +35,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("token", data.token);
+        navigate(from, { replace: true });
       });
   };
 
