@@ -99,7 +99,9 @@ const ManageInventory = () => {
                   <p className="d-flex justify-content-between align-items-center">
                     {fruit.name}{" "}
                     <GrUpdate
-                      onClick={() => navigate(`/inventory/${fruit._id}`)}
+                      onClick={() =>
+                        navigate(`/inventory/${fruit._id}?from=inventory`)
+                      }
                       className="me-lg-4"
                     ></GrUpdate>
                   </p>
@@ -128,7 +130,9 @@ const ManageInventory = () => {
                   <p className="d-flex justify-content-between align-items-center">
                     {myItem.name}{" "}
                     <GrUpdate
-                      onClick={() => navigate(`/inventory/${myItem._id}`)}
+                      onClick={() =>
+                        navigate(`/inventory/${myItem._id}?from=myitems`)
+                      }
                       className="me-lg-4"
                     ></GrUpdate>
                   </p>

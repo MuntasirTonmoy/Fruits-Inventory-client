@@ -8,10 +8,12 @@ import Items from "./Items/Items";
 
 const Home = () => {
   const { fruits } = useItems();
+  const { myItems } = useMyItems();
+  const allItems = [...fruits, ...myItems];
 
   return (
     <div>
-      {fruits.length === 0 && (
+      {allItems.length === 0 ? (
         <div
           style={{ height: "85vh" }}
           className="d-flex justify-content-center align-items-center"
@@ -20,11 +22,14 @@ const Home = () => {
           <div className="spinner-grow text-warning me-2" role="status"></div>
           <div className="spinner-grow text-success" role="status"></div>
         </div>
+      ) : (
+        <>
+          <Banner></Banner>
+          <Items></Items>
+          <Contact></Contact>
+          <AboutUs></AboutUs>
+        </>
       )}
-      <Banner></Banner>
-      <Items></Items>
-      <Contact></Contact>
-      <AboutUs></AboutUs>
     </div>
   );
 };

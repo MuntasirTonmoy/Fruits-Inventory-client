@@ -48,6 +48,7 @@ const AddItem = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
+          console.log(data);
           toast.success("Item added successfully", {
             toastId: "success1",
           });

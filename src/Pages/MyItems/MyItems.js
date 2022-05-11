@@ -34,9 +34,7 @@ const MyItems = () => {
       <Table className="w-75 mx-auto" striped bordered>
         <thead>
           <tr className="text-center">
-            <th className="fs-5" colSpan={2}>
-              All Items
-            </th>
+            <th className="fs-5">All Items</th>
             <th className="fs-5 d-lg-table-cell d-none">Quantity</th>
             <th className="fs-5 d-lg-table-cell d-none">Delivered</th>
             <th className="fs-5">Delete</th>
@@ -46,11 +44,13 @@ const MyItems = () => {
           {myItems.map((myItem) => {
             return (
               <tr key={myItem._id}>
-                <td colSpan={2} className="fs-5">
+                <td className="fs-5">
                   <p className="d-flex justify-content-between align-items-center">
                     {myItem.name}{" "}
                     <GrUpdate
-                      onClick={() => navigate(`/inventory/${myItem._id}`)}
+                      onClick={() =>
+                        navigate(`/inventory/${myItem._id}from=myitems`)
+                      }
                       className="me-lg-4"
                     ></GrUpdate>
                   </p>

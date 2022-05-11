@@ -10,7 +10,12 @@ const Fruit = ({ fruit }) => {
     <div className="col-lg-4 col-md-6 mb-4">
       <div className="item">
         <Card>
-          <Card.Img variant="top" src={fruit.picture} className="img-fluid" />
+          <Card.Img
+            variant="top"
+            style={{ height: "375px" }}
+            src={fruit.picture}
+            className="img-fluid"
+          />
           <Card.Body>
             <Card.Title className="fw-bold">{fruit.name}</Card.Title>
 

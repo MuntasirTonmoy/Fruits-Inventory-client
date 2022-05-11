@@ -8,13 +8,14 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 const Inventory = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  console.log(searchParams.get("from"));
+  const searchFrom = searchParams.get("from");
+  console.log(searchFrom);
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [reload, setReload] = useState(true);
 
   useEffect(() => {
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
+    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
@@ -28,7 +29,7 @@ const Inventory = () => {
     const delivered = prevDelivered + 1;
     const update = { quantity, delivered };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`, {
       method: "PUT",
       body: JSON.stringify(update),
       headers: {
@@ -49,7 +50,7 @@ const Inventory = () => {
     const quantity = prevQuantity + amount;
     const delivered = selectedItem?.delivered;
     const newQuantity = { quantity, delivered };
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
       headers: {
