@@ -2,9 +2,11 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import useMyItems from "../../hooks/useMyItems";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { toast } from "react-toastify";
+import { GrUpdate } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 const MyItems = () => {
+  const navigate = useNavigate();
   const { myItems, setMyItems } = useMyItems();
   const handleDeleteMyItems = (id) => {
     const confirm = window.confirm(
@@ -45,7 +47,13 @@ const MyItems = () => {
             return (
               <tr key={myItem._id}>
                 <td colSpan={2} className="fs-5">
-                  {myItem.name}
+                  <p className="d-flex justify-content-between align-items-center">
+                    {myItem.name}{" "}
+                    <GrUpdate
+                      onClick={() => navigate(`/inventory/${myItem._id}`)}
+                      className="me-lg-4"
+                    ></GrUpdate>
+                  </p>
                 </td>
                 <td className="fs-5 d-lg-table-cell d-none">
                   {myItem.quantity}

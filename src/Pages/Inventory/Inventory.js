@@ -3,23 +3,21 @@ import { Form } from "react-bootstrap";
 import { FaShippingFast } from "react-icons/fa";
 import { MdAddCircleOutline } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const Inventory = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  console.log(searchParams.get("from"));
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [reload, setReload] = useState(true);
-  const [loading, setIsLoading] = useState(false);
 
-  const [delivered, setDelivered] = useState(0);
   useEffect(() => {
-    setIsLoading(true);
     fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
-        setIsLoading(false);
       });
   }, [reload]);
 
@@ -49,7 +47,8 @@ const Inventory = () => {
     const amount = parseInt(event.target.quantity.value);
     const prevQuantity = selectedItem?.quantity;
     const quantity = prevQuantity + amount;
-    const newQuantity = { quantity };
+    const delivered = selectedItem?.delivered;
+    const newQuantity = { quantity, delivered };
     fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
@@ -67,17 +66,6 @@ const Inventory = () => {
 
   return (
     <div className="container my-lg-5 py-lg-5 my-5">
-      {loading && (
-        <div
-          style={{ height: "85vh" }}
-          className="d-flex justify-content-center align-items-center"
-        >
-          <div className="spinner-grow text-danger me-2" role="status"></div>
-          <div className="spinner-grow text-warning me-2" role="status"></div>
-          <div className="spinner-grow text-success" role="status"></div>
-        </div>
-      )}
-
       <div className="row">
         <div className="col-lg-6 col-12 bg-light">
           <div className="row m-0 pb-2">

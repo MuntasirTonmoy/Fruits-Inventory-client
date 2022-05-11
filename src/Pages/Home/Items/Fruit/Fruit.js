@@ -22,7 +22,7 @@ const Fruit = ({ fruit }) => {
             </div>
           </Card.Body>
           <Card.Footer
-            onClick={() => navigate(`/inventory/${fruit._id}`)}
+            onClick={() => navigate(`/inventory/${fruit._id}?from=inventory`)}
             className="button"
           >
             <span className="fs-5 me-1">

@@ -23,6 +23,7 @@ const AddItem = () => {
     const name = event.target.name.value;
     const picture = event.target.picture.value;
     const description = event.target.description.value;
+    const supplier = event.target.supplier.value;
     const price = event.target.price.value;
     const quantity = event.target.quantity.value;
     const delivered = 0;
@@ -31,6 +32,7 @@ const AddItem = () => {
       email,
       picture,
       description,
+      supplier,
       price,
       quantity,
       delivered,
@@ -94,6 +96,15 @@ const AddItem = () => {
             name="description"
             type="text"
             placeholder="Enter description"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Supplier</Form.Label>
+          <Form.Control
+            name="supplier"
+            type="text"
+            placeholder="Enter supplier name"
             required
           />
         </Form.Group>

@@ -11,10 +11,8 @@ const useMyItems = () => {
   const [user] = useAuthState(auth);
 
   const [myItems, setMyItems] = useState([]);
-  const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     const getItems = async () => {
       try {
         const email = user.email;
@@ -38,7 +36,7 @@ const useMyItems = () => {
     getItems();
   }, [user]);
 
-  return { myItems, setMyItems, loading, setIsLoading };
+  return { myItems, setMyItems };
 };
 
 export default useMyItems;

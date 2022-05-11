@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import useItems from "../../hooks/useItems";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { AiOutlineFileAdd } from "react-icons/ai";
+import { GrUpdate } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -19,7 +20,7 @@ const ManageInventory = () => {
     }
   }, [user]);
 
-  const { fruits, setFruits, loading } = useItems();
+  const { fruits, setFruits } = useItems();
   const { myItems, setMyItems } = useMyItems();
 
   const handleDeleteFruits = (id) => {
@@ -60,7 +61,7 @@ const ManageInventory = () => {
   };
   return (
     <div className="container mt-lg-5">
-      {loading && (
+      {fruits.length === 0 && (
         <div
           style={{ height: "85vh" }}
           className="d-flex justify-content-center align-items-center"
@@ -84,9 +85,7 @@ const ManageInventory = () => {
       <Table className="w-75 mx-auto" striped bordered>
         <thead>
           <tr className="text-center">
-            <th className="fs-5" colSpan={2}>
-              All Items
-            </th>
+            <th className="fs-5 ">All Items</th>
             <th className="fs-5 d-lg-table-cell d-none">Quantity</th>
             <th className="fs-5 d-lg-table-cell d-none">Delivered</th>
             <th className="fs-5">Delete</th>
@@ -96,8 +95,14 @@ const ManageInventory = () => {
           {fruits.map((fruit) => {
             return (
               <tr key={fruit._id}>
-                <td colSpan={2} className="fs-5">
-                  {fruit.name}
+                <td className="fs-5">
+                  <p className="d-flex justify-content-between align-items-center">
+                    {fruit.name}{" "}
+                    <GrUpdate
+                      onClick={() => navigate(`/inventory/${fruit._id}`)}
+                      className="me-lg-4"
+                    ></GrUpdate>
+                  </p>
                 </td>
                 <td className="fs-5 d-lg-table-cell d-none">
                   {fruit.quantity}
@@ -119,8 +124,14 @@ const ManageInventory = () => {
           {myItems.map((myItem) => {
             return (
               <tr key={myItem._id}>
-                <td colSpan={2} className="fs-5">
-                  {myItem.name}
+                <td className="fs-5">
+                  <p className="d-flex justify-content-between align-items-center">
+                    {myItem.name}{" "}
+                    <GrUpdate
+                      onClick={() => navigate(`/inventory/${myItem._id}`)}
+                      className="me-lg-4"
+                    ></GrUpdate>
+                  </p>
                 </td>
                 <td className="fs-5 d-lg-table-cell d-none">
                   {myItem.quantity}
