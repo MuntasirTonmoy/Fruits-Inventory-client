@@ -18,7 +18,7 @@ const useMyItems = () => {
     const getItems = async () => {
       try {
         const email = user.email;
-        const url = `http://localhost:5000/myitems?email=${email}`;
+        const url = `https://polar-lowlands-01561.herokuapp.com/myitems?email=${email}`;
         const { data } = await axios.get(url, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`,

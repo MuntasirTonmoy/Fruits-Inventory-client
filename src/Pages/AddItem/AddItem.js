@@ -36,7 +36,7 @@ const AddItem = () => {
       delivered,
     };
 
-    fetch(`http://localhost:5000/myitems`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/myitems`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {

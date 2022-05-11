@@ -25,7 +25,7 @@ const Login = () => {
     const password = event.target.password?.value;
     await signInWithEmailAndPassword(email, password);
 
-    fetch(`http://localhost:5000/login`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/login`, {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: {

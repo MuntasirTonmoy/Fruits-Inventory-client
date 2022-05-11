@@ -27,7 +27,7 @@ const ManageInventory = () => {
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `http://localhost:5000/inventory/${id}`;
+      const url = `https://polar-lowlands-01561.herokuapp.com/inventory/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -45,7 +45,7 @@ const ManageInventory = () => {
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `http://localhost:5000/myitems/${id}`;
+      const url = `https://polar-lowlands-01561.herokuapp.com/myitems/${id}`;
       fetch(url, {
         method: "DELETE",
       })
