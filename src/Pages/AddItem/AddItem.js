@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { BsFileCheck, BsFileEarmark } from "react-icons/bs";
 import { MdAddCircleOutline } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 
@@ -71,7 +72,20 @@ const AddItem = () => {
         draggable
         pauseOnHover={false}
       />
-      <h1 className="text-center mt-5">Add Item</h1>
+      <h1 className="text-center mt-5">Add New Item</h1>
+      <p className="text-center">
+        <Link style={{ textDecoration: "none" }} to="/myitems">
+          <span className="me-3  text-uppercase primary-color">
+            <BsFileEarmark></BsFileEarmark> my items
+          </span>
+        </Link>
+        |
+        <Link style={{ textDecoration: "none" }} to="/manageinventory">
+          <span className="ms-3 text-uppercase primary-color">
+            <BsFileCheck></BsFileCheck> All Items
+          </span>
+        </Link>
+      </p>
       <Form onSubmit={handleAddItem} className="w-75 mx-auto">
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>

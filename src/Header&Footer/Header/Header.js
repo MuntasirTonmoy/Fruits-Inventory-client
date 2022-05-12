@@ -62,7 +62,11 @@ const Header = () => {
               id="nav-dropdown-dark-example"
               title="Inventory"
               menuVariant="dark"
-              className="me-lg-3"
+              style={{
+                borderBottom: "1px solid #fa6400",
+                borderRadius: "5px",
+              }}
+              className="me-lg-4 "
             >
               <NavDropdown.Item
                 className="mx-auto my-2 my-lg-0 me-lg-2"

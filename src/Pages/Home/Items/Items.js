@@ -22,7 +22,7 @@ const Items = () => {
           <div className="spinner-grow text-success" role="status"></div>
         </div>
       )}
-      <h1 className="text-center font mb-4">Available Fruits</h1>
+      <h1 className="text-center font mb-4">Inventory items</h1>
       <div className="row p-0 g-4">
         {sixItems.map((fruit) => (
           <Fruit key={fruit._id} fruit={fruit}></Fruit>
