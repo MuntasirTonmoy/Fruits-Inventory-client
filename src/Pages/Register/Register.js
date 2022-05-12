@@ -56,14 +56,12 @@ const Register = () => {
     toast.error(googleError.message, {
       toastId: "error1",
     });
-    console.log(googleError.message);
   }
 
   if (emailError) {
     toast.error(emailError.message, {
       toastId: "error1",
     });
-    console.log(emailError.message);
   }
 
   return (

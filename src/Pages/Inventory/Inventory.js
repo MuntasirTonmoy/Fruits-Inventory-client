@@ -9,7 +9,6 @@ const Inventory = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchFrom = searchParams.get("from");
-  console.log(searchFrom);
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [reload, setReload] = useState(true);
@@ -38,7 +37,6 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setReload(!reload);
       });
   };
@@ -59,7 +57,6 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setReload(!reload);
       });
     event.target.reset();
