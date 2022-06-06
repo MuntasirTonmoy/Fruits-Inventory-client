@@ -49,7 +49,7 @@ const MyItems = () => {
                     {myItem.name}{" "}
                     <GrUpdate
                       onClick={() =>
-                        navigate(`/inventory/${myItem._id}from=myitems`)
+                        navigate(`/inventory/${myItem._id}?from=myitems`)
                       }
                       className="me-lg-4"
                     ></GrUpdate>
