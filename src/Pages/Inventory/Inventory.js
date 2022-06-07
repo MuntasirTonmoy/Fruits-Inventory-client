@@ -12,7 +12,7 @@ const Inventory = () => {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/inventory/${id}`)
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
@@ -26,7 +26,7 @@ const Inventory = () => {
     const delivered = prevDelivered + 1;
     const update = { quantity, delivered };
 
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(update),
       headers: {
@@ -49,7 +49,7 @@ const Inventory = () => {
     const quantity = prevQuantity + amount;
     const delivered = selectedItem?.delivered;
     const newQuantity = { quantity, delivered };
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
       headers: {

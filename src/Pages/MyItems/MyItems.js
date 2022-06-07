@@ -12,7 +12,7 @@ const MyItems = () => {
   const [myItems, setMyItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myitems/${email}`)
+    fetch(`https://polar-lowlands-01561.herokuapp.com/myitems/${email}`)
       .then((res) => res.json())
       .then((data) => setMyItems(data));
   }, [email]);
@@ -22,7 +22,7 @@ const MyItems = () => {
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `http://localhost:5000/inventory/${id}`;
+      const url = `https://polar-lowlands-01561.herokuapp.com/inventory/${id}`;
       fetch(url, {
         method: "DELETE",
       })
