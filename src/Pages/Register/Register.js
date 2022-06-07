@@ -5,13 +5,25 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useUpdateProfile } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
+  let location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  //social signup
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+
+  //email signup
+  const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [updateProfile] = useUpdateProfile(auth);
+
   const handleSignUp = async (event) => {
     event.preventDefault();
     const name = event.target.name?.value;
@@ -20,14 +32,6 @@ const Register = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
   };
-
-  const [updateProfile] = useUpdateProfile(auth);
-
-  const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] =
-    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-
-  const [signInWithGoogle, googleUser, googleLoading, googleError] =
-    useSignInWithGoogle(auth);
 
   if (emailLoading || googleLoading) {
     <div
@@ -41,25 +45,13 @@ const Register = () => {
   }
 
   useEffect(() => {
-    if (googleUser) {
-      navigate("/");
+    if (googleUser || emailUser) {
+      navigate(from, { replace: true });
     }
-  }, [googleUser]);
+  }, [googleUser, emailUser]);
 
-  useEffect(() => {
-    if (emailUser) {
-      navigate("/");
-    }
-  }, [emailUser]);
-
-  if (googleError) {
-    toast.error(googleError.message, {
-      toastId: "error1",
-    });
-  }
-
-  if (emailError) {
-    toast.error(emailError.message, {
+  if (googleError || emailError) {
+    toast.error((googleError || emailError).message, {
       toastId: "error1",
     });
   }

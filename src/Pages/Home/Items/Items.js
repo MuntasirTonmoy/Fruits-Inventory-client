@@ -1,18 +1,15 @@
 import React from "react";
 import useItems from "../../../hooks/useItems";
-import useMyItems from "../../../hooks/useMyItems";
 import Fruit from "./Fruit/Fruit";
 
 const Items = () => {
   const { fruits } = useItems();
-  const { myItems } = useMyItems();
-  const allItems = [...fruits, ...myItems];
 
-  const sixItems = allItems.slice(0, 6);
+  const sixItems = fruits.slice(0, 6);
 
   return (
     <div className="container my-5">
-      {allItems.length === 0 && (
+      {fruits?.length === 0 && (
         <div
           style={{ height: "85vh" }}
           className="d-flex justify-content-center align-items-center"

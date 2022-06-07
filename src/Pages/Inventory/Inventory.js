@@ -3,18 +3,16 @@ import { Form } from "react-bootstrap";
 import { FaShippingFast } from "react-icons/fa";
 import { MdAddCircleOutline } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Inventory = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const searchFrom = searchParams.get("from");
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
   const [reload, setReload] = useState(true);
 
   useEffect(() => {
-    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`)
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
@@ -28,7 +26,7 @@ const Inventory = () => {
     const delivered = prevDelivered + 1;
     const update = { quantity, delivered };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(update),
       headers: {
@@ -48,7 +46,7 @@ const Inventory = () => {
     const quantity = prevQuantity + amount;
     const delivered = selectedItem?.delivered;
     const newQuantity = { quantity, delivered };
-    fetch(`https://polar-lowlands-01561.herokuapp.com/${searchFrom}/${id}`, {
+    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
       headers: {

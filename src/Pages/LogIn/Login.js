@@ -7,14 +7,15 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useLocation, useNavigate } from "react-router-dom";
-import { async } from "@firebase/util";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
-
   const from = location.state?.from?.pathname || "/";
+
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
 
   const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
     useSignInWithEmailAndPassword(auth);
@@ -24,36 +25,16 @@ const Login = () => {
     const email = event.target.email?.value;
     const password = event.target.password?.value;
     await signInWithEmailAndPassword(email, password);
-
-    fetch(`https://polar-lowlands-01561.herokuapp.com/login`, {
-      method: "POST",
-      body: JSON.stringify({ email }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.token);
-      });
   };
 
-  const [signInWithGoogle, googleUser, googleLoading, googleError] =
-    useSignInWithGoogle(auth);
-
   useEffect(() => {
-    if (emailUser) {
+    if (emailUser || googleUser) {
       navigate(from, { replace: true });
     }
-  }, [emailUser]);
+  }, [emailUser, googleUser]);
 
-  if (emailError) {
-    toast.error(emailError.message, {
-      toastId: "error1",
-    });
-  }
-  if (googleError) {
-    toast.error(googleError.message, {
+  if (emailError || googleError) {
+    toast.error((emailError || googleError).message, {
       toastId: "error1",
     });
   }
@@ -68,12 +49,6 @@ const Login = () => {
       <div className="spinner-grow text-success" role="status"></div>
     </div>;
   }
-
-  useEffect(() => {
-    if (googleUser) {
-      navigate(from, { replace: true });
-    }
-  }, [googleUser]);
 
   return (
     <div className="container">
