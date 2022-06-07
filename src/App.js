@@ -56,7 +56,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/myitems"
+          path="/myitems/:email"
           element={
             <RequireAuth>
               <MyItems></MyItems>

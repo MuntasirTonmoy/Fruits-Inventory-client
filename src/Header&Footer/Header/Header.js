@@ -13,6 +13,7 @@ import { BiLogIn, BiUserPlus, BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  const email = user?.email;
   const handleSignout = () => {
     signOut(auth);
   };
@@ -71,7 +72,7 @@ const Header = () => {
               <NavDropdown.Item
                 className="mx-auto my-2 my-lg-0 me-lg-2"
                 as={CustomLink}
-                to="/myitems"
+                to={`/myitems/${email}`}
               >
                 My Items
               </NavDropdown.Item>

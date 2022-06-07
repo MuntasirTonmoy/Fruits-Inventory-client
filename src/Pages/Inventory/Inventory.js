@@ -9,10 +9,10 @@ const Inventory = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [selectedItem, setSelectedItem] = useState({});
-  const [reload, setReload] = useState(true);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
+    fetch(`http://localhost:5000/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedItem(data);
@@ -26,7 +26,7 @@ const Inventory = () => {
     const delivered = prevDelivered + 1;
     const update = { quantity, delivered };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`http://localhost:5000/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(update),
       headers: {
@@ -35,18 +35,21 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setReload(!reload);
+        if (data?.modifiedCount > 0) {
+          setReload(!reload);
+        }
       });
   };
 
   const handleRestock = (event) => {
     event.preventDefault();
     const amount = parseInt(event.target.quantity.value);
+
     const prevQuantity = selectedItem?.quantity;
     const quantity = prevQuantity + amount;
     const delivered = selectedItem?.delivered;
     const newQuantity = { quantity, delivered };
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`http://localhost:5000/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
       headers: {
@@ -55,7 +58,9 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setReload(!reload);
+        if (data?.modifiedCount > 0) {
+          setReload(!reload);
+        }
       });
     event.target.reset();
   };

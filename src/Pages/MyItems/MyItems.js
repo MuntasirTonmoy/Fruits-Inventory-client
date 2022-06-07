@@ -2,27 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
-import { useNavigate } from "react-router-dom";
-import useItems from "../../hooks/useItems";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const MyItems = () => {
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
-  const email = user?.email;
+  const { email } = useParams();
   const [myItems, setMyItems] = useState([]);
+
   useEffect(() => {
-    fetch(`https://polar-lowlands-01561.herokuapp.com/myitems/${email}`)
+    fetch(`http://localhost:5000/myitems/${email}`)
       .then((res) => res.json())
       .then((data) => setMyItems(data));
   }, [email]);
+
   const handleDeleteMyItems = (id) => {
     const confirm = window.confirm(
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `https://polar-lowlands-01561.herokuapp.com/inventory/${id}`;
+      const url = `http://localhost:5000/inventory/${id}`;
       fetch(url, {
         method: "DELETE",
       })

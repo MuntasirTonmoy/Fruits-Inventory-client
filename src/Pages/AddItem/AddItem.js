@@ -9,7 +9,7 @@ import auth from "../../firebase.init";
 
 const AddItem = () => {
   const [user] = useAuthState(auth);
-  const email = user.email;
+  const email = user?.email;
   const navigate = useNavigate();
   let location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -39,7 +39,7 @@ const AddItem = () => {
       delivered,
     };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory`, {
+    fetch(`http://localhost:5000/inventory`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -74,7 +74,7 @@ const AddItem = () => {
       />
       <h1 className="text-center mt-5">Add New Item</h1>
       <p className="text-center">
-        <Link style={{ textDecoration: "none" }} to="/myitems">
+        <Link style={{ textDecoration: "none" }} to={`myitems/${email}`}>
           <span className="me-3  text-uppercase primary-color">
             <BsFileEarmark></BsFileEarmark> my items
           </span>

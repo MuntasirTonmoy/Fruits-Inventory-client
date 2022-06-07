@@ -26,7 +26,7 @@ const ManageInventory = () => {
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `https://polar-lowlands-01561.herokuapp.com/inventory/${id}`;
+      const url = `http://localhost:5000/inventory/${id}`;
       fetch(url, {
         method: "DELETE",
       })
