@@ -6,14 +6,14 @@ import Contact from "./Contact/Contact";
 import Items from "./Items/Items";
 
 const Home = () => {
-  const { fruits } = useItems();
+  const { fruits, loading } = useItems();
 
   return (
     <div>
       <Banner></Banner>
-      {fruits?.length > 0 ? (
+      {loading ? (
         <div
-          style={{ height: "10vh" }}
+          style={{ height: "30vh" }}
           className="d-flex justify-content-center align-items-center"
         >
           <div className="spinner-grow text-danger me-2" role="status"></div>
