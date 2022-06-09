@@ -8,6 +8,7 @@ import {
 import auth from "../../firebase.init";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import Loading from "../../utilities/Loading";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -40,14 +41,7 @@ const Login = () => {
   }
 
   if (emailLoading || googleLoading) {
-    <div
-      style={{ height: "85vh" }}
-      className="d-flex justify-content-center align-items-center"
-    >
-      <div className="spinner-grow text-danger me-2" role="status"></div>
-      <div className="spinner-grow text-warning me-2" role="status"></div>
-      <div className="spinner-grow text-success" role="status"></div>
-    </div>;
+    <Loading />;
   }
 
   return (

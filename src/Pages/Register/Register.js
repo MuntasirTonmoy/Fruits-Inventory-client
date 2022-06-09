@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useUpdateProfile } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
+import Loading from "../../utilities/Loading";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -34,14 +35,7 @@ const Register = () => {
   };
 
   if (emailLoading || googleLoading) {
-    <div
-      style={{ height: "85vh" }}
-      className="d-flex justify-content-center align-items-center"
-    >
-      <div className="spinner-grow text-danger me-2" role="status"></div>
-      <div className="spinner-grow text-warning me-2" role="status"></div>
-      <div className="spinner-grow text-success" role="status"></div>
-    </div>;
+    <Loading />;
   }
 
   useEffect(() => {

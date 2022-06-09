@@ -7,6 +7,7 @@ import { GrUpdate } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Loading from "../../utilities/Loading";
 
 const ManageInventory = () => {
   const [user] = useAuthState(auth);
@@ -19,7 +20,7 @@ const ManageInventory = () => {
     }
   }, [user]);
 
-  const { fruits, setFruits } = useItems();
+  const { fruits, setFruits, loading } = useItems();
 
   const handleDeleteFruits = (id) => {
     const confirm = window.confirm(
@@ -42,16 +43,6 @@ const ManageInventory = () => {
 
   return (
     <div className="container mt-lg-5">
-      {fruits.length === 0 && (
-        <div
-          style={{ height: "85vh" }}
-          className="d-flex justify-content-center align-items-center"
-        >
-          <div className="spinner-grow text-danger me-2" role="status"></div>
-          <div className="spinner-grow text-warning me-2" role="status"></div>
-          <div className="spinner-grow text-success" role="status"></div>
-        </div>
-      )}
       <div className="w-75 mx-auto">
         <button
           onClick={() => navigate("/additem")}
@@ -63,49 +54,67 @@ const ManageInventory = () => {
       <h2 className="text-center font bg-light p-3 w-75 mx-auto mb-0">
         Manage All Items
       </h2>
-      <Table className="w-75 mx-auto" striped bordered>
-        <thead>
-          <tr className="text-center">
-            <th className="fs-5 ">All Items</th>
-            <th className="fs-5 d-lg-table-cell d-none">Quantity</th>
-            <th className="fs-5 d-lg-table-cell d-none">Delivered</th>
-            <th className="fs-5">Delete</th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {fruits.map((fruit) => {
-            return (
-              <tr key={fruit._id}>
-                <td className="fs-5">
-                  <p className="d-flex justify-content-between align-items-center">
-                    {fruit.name}{" "}
-                    <GrUpdate
-                      onClick={() =>
-                        navigate(`/inventory/${fruit._id}?from=inventory`)
-                      }
-                      className="me-lg-4"
-                    ></GrUpdate>
-                  </p>
-                </td>
-                <td className="fs-5 d-lg-table-cell d-none">
-                  {fruit.quantity}
-                </td>
-                <td className="fs-5 d-lg-table-cell d-none">
-                  {fruit.delivered}
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteFruits(fruit._id)}
-                    className="border-0 bg-transparent text-danger fs-4"
-                  >
-                    <RiDeleteBinLine></RiDeleteBinLine>
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Table className="w-75 mx-auto" striped bordered>
+          <thead>
+            <tr className="text-center">
+              <th className="fs-5 ">All Items</th>
+              <th className="fs-5 d-lg-table-cell d-none">Quantity</th>
+              <th className="fs-5 d-lg-table-cell d-none">Delivered</th>
+              <th className="fs-5">Delete</th>
+            </tr>
+          </thead>
+
+          <tbody className="text-center">
+            {fruits.length === 0 ? (
+              <>
+                <tr className="text-center">
+                  <td>Empty</td>
+                  <td>Empty</td>
+                  <td>Empty</td>
+                  <td>Empty</td>
+                </tr>
+              </>
+            ) : (
+              <>
+                {fruits.map((fruit) => {
+                  return (
+                    <tr key={fruit._id}>
+                      <td className="fs-5">
+                        <p className="d-flex justify-content-between align-items-center">
+                          {fruit.name}
+                          <GrUpdate
+                            onClick={() =>
+                              navigate(`/inventory/${fruit._id}?from=inventory`)
+                            }
+                            className="me-lg-4"
+                          ></GrUpdate>
+                        </p>
+                      </td>
+                      <td className="fs-5 d-lg-table-cell d-none">
+                        {fruit.quantity}
+                      </td>
+                      <td className="fs-5 d-lg-table-cell d-none">
+                        {fruit.delivered}
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleDeleteFruits(fruit._id)}
+                          className="border-0 bg-transparent text-danger fs-4"
+                        >
+                          <RiDeleteBinLine></RiDeleteBinLine>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </>
+            )}
+          </tbody>
+        </Table>
+      )}
     </div>
   );
 };

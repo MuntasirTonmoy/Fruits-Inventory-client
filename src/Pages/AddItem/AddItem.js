@@ -74,7 +74,7 @@ const AddItem = () => {
       />
       <h1 className="text-center mt-5">Add New Item</h1>
       <p className="text-center">
-        <Link style={{ textDecoration: "none" }} to={`myitems/${email}`}>
+        <Link style={{ textDecoration: "none" }} to={`/myitems/${email}`}>
           <span className="me-3  text-uppercase primary-color">
             <BsFileEarmark></BsFileEarmark> my items
           </span>
