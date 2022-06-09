@@ -10,9 +10,10 @@ const Home = () => {
 
   return (
     <div>
-      {fruits?.length === 0 ? (
+      <Banner></Banner>
+      {fruits?.length > 0 ? (
         <div
-          style={{ height: "85vh" }}
+          style={{ height: "10vh" }}
           className="d-flex justify-content-center align-items-center"
         >
           <div className="spinner-grow text-danger me-2" role="status"></div>
@@ -21,12 +22,11 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <Banner></Banner>
           <Items></Items>
-          <Contact></Contact>
-          <AboutUs></AboutUs>
         </>
       )}
+      <Contact></Contact>
+      <AboutUs></AboutUs>
     </div>
   );
 };
