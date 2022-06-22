@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 
 const useItems = () => {
   const [fruits, setFruits] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch("https://polar-lowlands-01561.herokuapp.com/fruits")
       .then((res) => res.json())
       .then((data) => {
-        setFruits(data);
-        setLoading(false);
+        if (data) {
+          setFruits(data);
+          setLoading(false);
+        } else {
+          setLoading(true);
+        }
       });
-  }, []);
+  }, [loading]);
   return { fruits, setFruits, loading };
 };
 
