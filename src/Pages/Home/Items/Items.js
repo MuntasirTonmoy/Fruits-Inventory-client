@@ -6,7 +6,7 @@ import Fruit from "./Fruit/Fruit";
 const Items = () => {
   const { fruits, loading } = useItems();
 
-  const sixItems = fruits.slice(0, 6);
+  const sixItems = fruits?.slice(0, 6);
 
   return (
     <div className="container my-5">

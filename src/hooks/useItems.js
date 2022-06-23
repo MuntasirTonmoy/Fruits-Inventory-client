@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useItems = () => {
   const [fruits, setFruits] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://polar-lowlands-01561.herokuapp.com/fruits")
@@ -11,8 +11,6 @@ const useItems = () => {
         if (data) {
           setFruits(data);
           setLoading(false);
-        } else {
-          setLoading(true);
         }
       });
   }, [loading]);

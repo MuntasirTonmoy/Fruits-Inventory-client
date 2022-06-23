@@ -1,15 +1,25 @@
 import React from "react";
+import "./loading.css";
 
 const Loading = () => {
   return (
-    <div>
-      <div
-        style={{ height: "85vh" }}
-        className="d-flex justify-content-center align-items-center"
-      >
-        <div className="spinner-grow text-danger me-2" role="status"></div>
-        <div className="spinner-grow text-warning me-2" role="status"></div>
-        <div className="spinner-grow text-success" role="status"></div>
+    <div
+      style={{ height: "50vh" }}
+      className="d-flex justify-content-center align-items-center"
+    >
+      <div className="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   );
