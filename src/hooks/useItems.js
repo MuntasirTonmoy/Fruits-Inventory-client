@@ -6,12 +6,7 @@ const useItems = () => {
 
   useEffect(() => {
     fetch("https://polar-lowlands-01561.herokuapp.com/fruits")
-      .then((res) => {
-        if (res.status === 404) {
-          setLoading(!loading);
-        }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         setFruits(data);
         setLoading(false);
