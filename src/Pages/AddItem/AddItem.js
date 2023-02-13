@@ -19,7 +19,7 @@ const AddItem = () => {
     }
   }, [user]);
 
-  const handleAddItem = (event) => {
+  const handleAddItem = event => {
     event.preventDefault();
     const name = event.target.name.value;
     const picture = event.target.picture.value;
@@ -39,15 +39,15 @@ const AddItem = () => {
       delivered,
     };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory`, {
+    fetch(`https://precious-red-bedclothes.cyclic.app/inventory`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
         "Content-type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data) {
           console.log(data);
           toast.success("Item added successfully", {

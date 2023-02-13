@@ -5,14 +5,14 @@ const useItems = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://polar-lowlands-01561.herokuapp.com/fruits")
-      .then((res) => {
+    fetch("https://precious-red-bedclothes.cyclic.app/fruits")
+      .then(res => {
         if (res.status === 404) {
           window.location.reload();
         }
         return res.json();
       })
-      .then((data) => {
+      .then(data => {
         setFruits(data);
         setLoading(false);
       });

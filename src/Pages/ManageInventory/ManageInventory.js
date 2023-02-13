@@ -22,19 +22,19 @@ const ManageInventory = () => {
 
   const { fruits, setFruits, loading } = useItems();
 
-  const handleDeleteFruits = (id) => {
+  const handleDeleteFruits = id => {
     const confirm = window.confirm(
       "Are you sure you want to delete this item? "
     );
     if (confirm) {
-      const url = `https://polar-lowlands-01561.herokuapp.com/inventory/${id}`;
+      const url = `https://precious-red-bedclothes.cyclic.app/inventory/${id}`;
       fetch(url, {
         method: "DELETE",
       })
-        .then((res) => res.json())
-        .then((data) => {
+        .then(res => res.json())
+        .then(data => {
           if (data.deletedCount > 0) {
-            const remainingFruits = fruits.filter((fruit) => fruit._id !== id);
+            const remainingFruits = fruits.filter(fruit => fruit._id !== id);
             setFruits(remainingFruits);
           }
         });
@@ -79,7 +79,7 @@ const ManageInventory = () => {
               </>
             ) : (
               <>
-                {fruits.map((fruit) => {
+                {fruits.map(fruit => {
                   return (
                     <tr key={fruit._id}>
                       <td className="fs-5">

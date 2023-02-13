@@ -12,9 +12,9 @@ const Inventory = () => {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    fetch(`https://precious-red-bedclothes.cyclic.app/inventory/${id}`)
+      .then(res => res.json())
+      .then(data => {
         setSelectedItem(data);
       });
   }, [reload]);
@@ -26,22 +26,22 @@ const Inventory = () => {
     const delivered = prevDelivered + 1;
     const update = { quantity, delivered };
 
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`https://precious-red-bedclothes.cyclic.app/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(update),
       headers: {
         "Content-type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data?.modifiedCount > 0) {
           setReload(!reload);
         }
       });
   };
 
-  const handleRestock = (event) => {
+  const handleRestock = event => {
     event.preventDefault();
     const amount = parseInt(event.target.quantity.value);
 
@@ -49,15 +49,15 @@ const Inventory = () => {
     const quantity = prevQuantity + amount;
     const delivered = selectedItem?.delivered;
     const newQuantity = { quantity, delivered };
-    fetch(`https://polar-lowlands-01561.herokuapp.com/inventory/${id}`, {
+    fetch(`https://precious-red-bedclothes.cyclic.app/inventory/${id}`, {
       method: "PUT",
       body: JSON.stringify(newQuantity),
       headers: {
         "Content-type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data?.modifiedCount > 0) {
           setReload(!reload);
         }
